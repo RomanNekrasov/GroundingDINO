@@ -27,6 +27,13 @@ RUN pip install jupyterlab==3.3.0
 # Make sure Jupyter knows about Python 3
 RUN python -m ipykernel install --user
 
+# Verify if CUDA compiler nvcc is available and link it if it's not
+RUN if [ ! -f /usr/local/cuda/bin/nvcc ]; then ln -s $(which nvcc) /usr/local/cuda/bin/nvcc; fi
+
+# Optionally install CUDA toolkit explicitly if the base image lacks components
+# This step can be uncommented if errors related to CUDA persist
+# RUN conda install -c nvidia cuda-toolkit=12.1 -y
+
 # Set the working directory
 WORKDIR /workspace
 
