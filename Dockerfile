@@ -32,7 +32,7 @@ RUN if [ ! -f /usr/local/cuda/bin/nvcc ]; then ln -s $(which nvcc) /usr/local/cu
 
 # Optionally install CUDA toolkit explicitly if the base image lacks components
 # This step can be uncommented if errors related to CUDA persist
-# RUN conda install -c nvidia cuda-toolkit=12.1 -y
+RUN conda install -c nvidia cuda-toolkit=12.1 -y
 
 # Set the working directory
 WORKDIR /workspace
